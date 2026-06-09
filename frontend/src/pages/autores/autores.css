@@ -1,0 +1,108 @@
+.hero {
+  padding: 45px 30px;
+}
+
+.hero h2 {
+  font-size: 30px;
+  color: #684186;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: #72617c;
+  font-size: 25px;
+  max-width: 720px;
+}
+
+.autor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 30px;
+  padding: 0 30px 30px;
+}
+
+.autor-card {
+  background: #f3edf7;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.autor-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+
+.autor-card h3 {
+  font-size: 24px;
+  text-align: center;
+  color: #3a1f5e;
+  margin-bottom: 10px;
+}
+
+.autor-role {
+  color: #5e2f7f;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.autor-card p {
+  color: #42385a;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+footer {
+  background: #79628d;
+  color: rgb(240, 235, 246);
+  padding: 40px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.links p,
+.links a {
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.contato {
+  text-align: right;
+  justify-self: end;
+}
+
+.contato h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.contato p {
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .autor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

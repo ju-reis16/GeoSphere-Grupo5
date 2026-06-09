@@ -1,0 +1,396 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #d8c5e6;
+}
+
+.container {
+  min-height: 100vh;
+}
+
+.navbar {
+  height: 100px;
+  background: #9586a09d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 42px;
+}
+
+.logo h1 {
+  color: #5e2f7f;
+  font-size: 40px;
+  line-height: 35px;
+}
+
+.logo p {
+  font-size: 13px;
+  color: #796b83;
+  margin-top: 7px;
+  align-items: left;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.ativo {
+  background: #583d6f;
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+
+
+.hero {
+  padding: 45px 30px;
+}
+
+.hero h2 {
+  font-size: 30px;
+  color: #684186;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.hero > p {
+  color: #72617c;
+  font-size: 13px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.hero input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background: #8c779e;
+  color: white;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+.hero input::placeholder {
+  color: white;
+}
+
+.cards {
+  display: flex;
+  gap: 15px;
+}
+
+.card {
+  flex: 1;
+  background: #65477f;
+  color: white;
+  border-radius: 5px;
+  padding: 12px;
+}
+
+.icone {
+  font-size: 10px;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 15px;
+  color: #e7dff0;
+  margin-bottom: 15px;
+}
+
+.card button {
+  border: none;
+  background: #8967a7;
+  color: white;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+
+.mapa {
+  padding: 150px 0;
+  background-image: url("https://i.pinimg.com/736x/0c/f3/b1/0cf3b163c5600481c65255f118699827.jpg");
+  background-size: cover;
+  background-position: center;
+  border-top: 3px solid #b8aac3;
+  border-bottom: 3px solid #b8aac3;
+}
+
+.texto {
+  width: 72%;
+  margin: 10px auto;
+  background: rgba(42, 30, 52, 0.75);
+  color: white;
+  border-radius: 6px;
+  padding: 50px;
+}
+
+.texto h2 {
+  color: #d8b5ff;
+  margin-bottom: 8px;
+  font-size: 30px;
+}
+
+.texto p {
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+
+footer {
+  background: #79628d;
+  color: rgb(240, 235, 246);
+  padding: 40px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.links p,
+.links a {
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.contato {
+  text-align: right;
+  justify-self: end;
+}
+
+.contato h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.contato p {
+  font-size: 12px;
+}
+
+.busca {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 1px;
+}
+
+.busca select,
+.busca input {
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.busca select {
+  width: 220px;
+  background: #8c779ecb;
+  color: white;
+}
+
+.busca input {
+  flex: 1;
+  min-width: 250px;
+  background: rgb(108, 86, 129);
+}
+
+.busca button {
+  height: 50px;
+  padding: 0 25px;
+  border: none;
+  border-radius: 8px;
+  background: #65477f;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.busca button:hover {
+  background: #583d6f;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px 30px;
+  perspective: 1000px;
+}
+
+.flashcard-container {
+  width: 100%;
+  height: 250px;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flashcard-container.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.flashcard-front {
+  background: #f3edf7;
+  color: #222;
+  transform: rotateY(0deg);
+}
+
+.flashcard-back {
+  background: #65477f;
+  color: white;
+  transform:rotateY(180deg);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flashcard-front h3 {
+  font-size: 22px;
+  color: #222;
+  margin: 15px 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.flashcard-front .hint {
+  font-size: 12px;
+  color: #5e2f7f;
+  text-align: center;
+  margin-top: auto;
+  font-style: italic;
+}
+
+.flashcard-back p {
+  font-size: 18px;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.tutorial {
+  margin: 0 30px 30px;
+  background: #f3edf7;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.tutorial h2 {
+  margin-bottom: 25px;
+}
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.passo {
+  display: flex;
+  gap: 15px;
+}
+
+.numero {
+  width: 40px;
+  height: 40px;
+  background: #b7c4eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.passo h4 {
+  margin-bottom: 8px;
+}
+
+.passo p {
+  font-size: 13px;
+  color: #555;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  width: fit-content;
+  font-weight: 500;
+}
+
+.globalizacao {
+  background: #0c6963;
+  color: #b8f0d2;
+}
+
+.geopolitica {
+  background: #651423;
+  color: #eb9096;
+}
+
+.imigracao {
+  background: #182a62;
+  color: #bcc6ed;
+}
+
+.blocos {
+  background: #8c7c15;
+  color: #f2e292;
+}
+
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flashcard-container {
+    height: 300px;
+  }
+
+  .tutorial-grid {
+    grid-template-columns: 1fr;
+  }
+}
