@@ -7,9 +7,28 @@ router.post("/login", (req, res) => {
   try {
     const { email, password } = req.body;
 
+    const normalizedEmail =
+      typeof email === "string"
+        ? email.trim().toLowerCase()
+        : "";
+
+    const normalizedPassword =
+      typeof password === "string"
+        ? password.trim()
+        : "";
+
+    const validEmail =
+      (process.env.AUTH_USER || "")
+        .trim()
+        .toLowerCase();
+
+    const validPassword =
+      (process.env.AUTH_PASSWORD || "")
+        .trim();
+
     if (
-      email !== process.env.AUTH_USER ||
-      password !== process.env.AUTH_PASSWORD
+      normalizedEmail !== validEmail ||
+      normalizedPassword !== validPassword
     ) {
       return res.status(401).json({
         message: "Email ou senha inválidos",
