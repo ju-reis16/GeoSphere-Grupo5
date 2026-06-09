@@ -40,7 +40,7 @@ export default function Login() {
         JSON.stringify(usuario)
       );
 
-      navigate("/dashboard");
+      navigate("/home");
 
     } catch (err) {
       setError(
