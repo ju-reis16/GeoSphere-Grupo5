@@ -7,8 +7,13 @@ function Questoes() {
   const [aberto, setAberto] = useState(null);
   const [filtro, setFiltro] = useState("");
   const [busca, setBusca] = useState("");
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState("");
 
   useEffect(() => {
+    setCarregando(true);
+    setErro("");
+
     fetch("http://localhost:3000/questoes-vestibulares")
       .then((res) => res.json())
       .then((dados) => {
@@ -37,7 +42,12 @@ function Questoes() {
 
         setQuestoes(agrupadas);
       })
-      .catch((erro) => console.error("Erro ao carregar questões:", erro));
+      .catch(() => {
+        setErro("Não foi possível carregar as questões do banco de dados.");
+      })
+      .finally(() => {
+        setCarregando(false);
+      });
   }, []);
 
   const questoesFiltradas = questoes.filter((questao) => {
@@ -84,7 +94,11 @@ function Questoes() {
       </section>
 
       <div className="cards-grid">
-        {questoesFiltradas.length > 0 ? (
+        {erro ? (
+          <p>{erro}</p>
+        ) : carregando ? (
+          <p>Carregando questões...</p>
+        ) : questoesFiltradas.length > 0 ? (
           questoesFiltradas.map((questao, index) => (
             <div
               key={index}
@@ -125,7 +139,7 @@ function Questoes() {
             </div>
           ))
         ) : (
-          <p>Carregando questões...</p>
+          <p>Nenhuma questão encontrada.</p>
         )}
       </div>
 

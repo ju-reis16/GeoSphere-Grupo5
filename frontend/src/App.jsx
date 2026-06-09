@@ -1,5 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, NavLink, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  NavLink,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 
 // Home
 import Home from "./pages/home/home";
@@ -10,12 +17,12 @@ import SobreNos from "./pages/sobre-nós/sobre_nos";
 import Flashcards from "./pages/flashcards/flashcards";
 
 // Login
-import Login from "./pages/Login";
-import PrivateRoute from "./routes/PrivateRoute";
+import Login from "./pages/login";
+import PrivateRoute from "./routes/privateRoute";
 
-export default function App() {
+function AppLayout() {
   return (
-    <BrowserRouter>
+    <div className="app-shell">
       <header className="navbar">
         <div className="logo">
           <h1>GeoSphere</h1>
@@ -23,34 +30,51 @@ export default function App() {
         </div>
 
         <nav>
-          <NavLink to="/home" className={({ isActive }) => isActive ? "ativo" : ""}>
+          <NavLink
+            to="/home"
+            className={({ isActive }) => (isActive ? "ativo" : "")}
+          >
             Início
           </NavLink>
-          <NavLink to="/questoes" className={({ isActive }) => isActive ? "ativo" : ""}>
+          <NavLink
+            to="/questoes"
+            className={({ isActive }) => (isActive ? "ativo" : "")}
+          >
             Questões
           </NavLink>
-          <NavLink to="/flashcards" className={({ isActive }) => isActive ? "ativo" : ""}>
+          <NavLink
+            to="/flashcards"
+            className={({ isActive }) => (isActive ? "ativo" : "")}
+          >
             Flashcards
           </NavLink>
         </nav>
       </header>
 
+      <main className="page-content">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
       <Routes>
-        {/*  login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
-
-        {/* Login */}
         <Route path="/login" element={<Login />} />
-          <PrivateRoute>
-          </PrivateRoute>
 
-        {/*Home*/}
-        <Route path="/home" element={<Home />} />
-        <Route path="/questoes" element={<Questoes />} />
-        <Route path="/questoes/:id" element={<QuestaoDetalhe />} />
-        <Route path="/autores" element={<Autores />} />
-        <Route path="/sobre-nos" element={<SobreNos />} />
-        <Route path="/flashcards" element={<Flashcards />} />
+        <Route element={<PrivateRoute />}>
+          <Route element={<AppLayout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/questoes" element={<Questoes />} />
+            <Route path="/questoes/:id" element={<QuestaoDetalhe />} />
+            <Route path="/autores" element={<Autores />} />
+            <Route path="/sobre-nos" element={<SobreNos />} />
+            <Route path="/flashcards" element={<Flashcards />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

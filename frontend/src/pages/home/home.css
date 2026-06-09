@@ -1,46 +1,3 @@
-.navbar {
-  min-height: 160px;
-  background: #9586a09d;
-  gap: 20px;
-  padding: 20px 42px;
-}
-
-.logo {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.logo h1 {
-  color: #5e2f7f;
-  font-size: 40px;
-  line-height: 35px;
-}
-
-.logo p {
-  font-size: 13px;
-  color: #bdb3c4;
-  margin-top: 10px;
-}
-
-nav {
-  display: flex;
-  gap: 25px;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-.ativo {
-  background: #583d6f;
-  padding: 4px 14px;
-  border-radius: 20px;
-}
-
 .hero h2 {
     text-align: center;
   }
@@ -71,30 +28,6 @@ nav a {
 
 /* Celulares */
 @media (max-width: 768px) {
-
-  .navbar {
-  min-height: 160px;
-  background: #9586a09d;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 42px;
-}
-
-  .logo h1 {
-    font-size: 32px;
-  }
-
-  .logo p {
-    font-size: 12px;
-  }
-
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
 
   .hero {
     padding: 30px 20px;
