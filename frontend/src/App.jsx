@@ -11,7 +11,6 @@ import Flashcards from "./pages/flashcards/flashcards";
 
 // Login
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./routes/PrivateRoute";
 
 export default function App() {
@@ -42,11 +41,8 @@ export default function App() {
 
         {/* Login */}
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={
           <PrivateRoute>
-            <Dashboard />
           </PrivateRoute>
-        } />
 
         {/*Home*/}
         <Route path="/home" element={<Home />} />
