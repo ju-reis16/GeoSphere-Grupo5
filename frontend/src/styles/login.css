@@ -7,15 +7,12 @@
 .login-container {
   width: 100%;
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   position: relative;
   overflow: hidden;
 }
@@ -23,28 +20,19 @@
 .background-overlay {
   position: absolute;
   inset: 0;
-
   background: rgba(0, 0, 0, 0.45);
-
   z-index: 1;
 }
 
 .glass-card {
   width: 420px;
   padding: 40px;
-
   border-radius: 25px;
-
   background: rgba(255, 255, 255, 0.1);
-
   backdrop-filter: blur(18px);
-
   border: 1px solid rgba(255, 255, 255, 0.2);
-
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-
   z-index: 10;
-
   color: white;
 }
 
@@ -75,45 +63,33 @@
 
 .input-group input {
   padding: 12px;
-
   border: none;
   border-radius: 10px;
-
   outline: none;
-
   font-size: 15px;
 }
 
 .login-btn {
   width: 100%;
-
   padding: 12px;
-
   border: none;
   border-radius: 10px;
-
   cursor: pointer;
-
   font-size: 16px;
   font-weight: bold;
-
   margin-top: 10px;
 }
 
 .error {
   display: block;
-
   color: #ffb3b3;
-
   margin-top: 8px;
   margin-bottom: 8px;
 }
 
 .divider {
   margin: 25px 0;
-
   text-align: center;
-
   color: #ddd;
 }
 
