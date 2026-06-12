@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./flashcards.css";
 
+const API_BASE = "http://localhost:3000";
+
 function Flashcards() {
   const [flashcards, setFlashcards] = useState([]);
   const [aberto, setAberto] = useState(null);
@@ -11,24 +13,20 @@ function Flashcards() {
   const [erro, setErro] = useState("");
 
   useEffect(() => {
-    console.log("Iniciando fetch de flashcards...");
     setCarregando(true);
     setErro("");
 
-    fetch("http://localhost:3000/view-flashcards")
+    fetch(`${API_BASE}/view-flashcards`)
       .then((res) => {
-        console.log("Status:", res.status);
         if (!res.ok) {
           throw new Error(`Erro na resposta: ${res.status}`);
         }
         return res.json();
       })
       .then((dados) => {
-        console.log("Dados recebidos:", dados);
         setFlashcards(Array.isArray(dados) ? dados : []);
       })
-      .catch((erro) => {
-        console.error("Erro ao carregar flashcards:", erro);
+      .catch(() => {
         setErro("Não foi possível carregar os flashcards do banco de dados.");
       })
       .finally(() => {
@@ -57,7 +55,7 @@ function Flashcards() {
   });
 
   const handleBuscar = () => {
-    console.log("Buscar:", filtro, busca);
+    setAberto(null);
   };
 
   return (

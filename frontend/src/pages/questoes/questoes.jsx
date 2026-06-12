@@ -1,13 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-import questoes from "../data/questoes";
+import Alternativa from "./alternativaQ";
+import Gabarito from "./Gabarito";
 
-import Alternativa from "../components/Alternativa";
-import Gabarito from "../components/Gabarito";
+import "./questao.css";
 
-import "../styles/questao.css";
+const API_BASE = "http://localhost:3000";
+
+function agruparQuestao(rows) {
+  if (!rows || rows.length === 0) {
+    return null;
+  }
+
+  const primeira = rows[0];
+  const alternativas = rows.map((row) => row.texto_alternativa || "");
+  const correta = rows.findIndex((row) => row.correta);
+
+  return {
+    id: Number(primeira.id),
+    titulo: `Questão ${primeira.id}`,
+    categoria: primeira.categoria || "Sem categoria",
+    vestibular: primeira.vestibular || "",
+    pergunta: primeira.pergunta || "",
+    alternativas,
+    correta: correta >= 0 ? correta : 0,
+    explicacao: "Explicação não disponível no backend ainda.",
+  };
+}
 
 function QuestaoDetalhe() {
 
@@ -15,15 +36,51 @@ function QuestaoDetalhe() {
 
   const navigate = useNavigate();
 
-  const questao = questoes.find(
-    q => q.id === Number(id)
-  );
+  const [questao, setQuestao] = useState(null);
 
   const [selecionada, setSelecionada] =
     useState(null);
 
   const [respondeu, setRespondeu] =
     useState(false);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState("");
+
+  useEffect(() => {
+    const carregarQuestao = async () => {
+      try {
+        setCarregando(true);
+        setErro("");
+
+        const response = await fetch(
+          `${API_BASE}/questoes/${id}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`Erro ao carregar questão: ${response.status}`);
+        }
+
+        const dados = await response.json();
+        const questaoAgrupada = agruparQuestao(
+          Array.isArray(dados) ? dados : []
+        );
+
+        if (!questaoAgrupada) {
+          setErro("Questão não encontrada.");
+          setQuestao(null);
+          return;
+        }
+
+        setQuestao(questaoAgrupada);
+      } catch (error) {
+        setErro("Não foi possível carregar a questão.");
+      } finally {
+        setCarregando(false);
+      }
+    };
+
+    carregarQuestao();
+  }, [id]);
 
   const responder = () => {
 
@@ -48,31 +105,24 @@ function QuestaoDetalhe() {
 
         <button
           className="btn-voltar"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/questoes")}
         >
           ← Voltar
         </button>
 
+        {carregando ? (
+          <p>Carregando questão...</p>
+        ) : erro ? (
+          <p>{erro}</p>
+        ) : questao ? (
+          <>
+
         <div className="texto-questao">
 
-          <p>
-            Não é possível identificar a globalização
-            apenas com a criação de uma economia
-            global, embora este seja seu ponto focal
-            e sua característica mais óbvia.
-          </p>
-
-          <p>
-            Precisamos olhar além da economia.
-            Antes de tudo, a globalização depende
-            da eliminação de obstáculos técnicos,
-            não de obstáculos econômicos.
-          </p>
-
           <p className="referencia">
-            HOBSBAWM, E. O novo século:
-            entrevista a Antonio Polito.
-            São Paulo: Cia das Letras, 2000.
+            {questao.vestibular}
+            {questao.vestibular && questao.categoria ? " · " : ""}
+            {questao.categoria}
           </p>
 
           <h2>
@@ -117,7 +167,7 @@ function QuestaoDetalhe() {
 
           <Gabarito
             alternativaCorreta={
-              letras[questao.correta]
+              letras[questao.correta] || "?"
             }
             explicacao={
               questao.explicacao
@@ -125,6 +175,9 @@ function QuestaoDetalhe() {
           />
 
         )}
+
+          </>
+        ) : null}
 
       </div>
 
