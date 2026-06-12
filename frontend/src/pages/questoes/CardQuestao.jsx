@@ -8,16 +8,16 @@ function CardQuestao({ questao }) {
         {questao.categoria}
       </span>
 
-      <h3>{questao.titulo}</h3>
+      <h3>{questao.titulo || `Questão ${questao.id}`}</h3>
 
       <p>{questao.pergunta}</p>
 
       <div className="footer-card">
         <span>
-          {questao.alternativas.length} alternativas
+          {(questao.alternativas?.length || 0)} alternativas
         </span>
 
-        <Link to={`/questao/${questao.id}`}>
+        <Link to={`/questoes/${questao.id}`}>
           Resolver →
         </Link>
       </div>

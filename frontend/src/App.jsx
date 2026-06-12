@@ -10,14 +10,13 @@ import {
 
 // Home
 import Home from "./pages/home/home";
-import Questoes from "./pages/questoes/questoes";
-import QuestaoDetalhe from "./pages/questoes/questaoDetalhe";
+import QuestaoDetalhe from "./pages/questoes/questoes";
 import Autores from "./pages/autores/autores";
 import SobreNos from "./pages/sobre-nós/sobre_nos";
 import Flashcards from "./pages/flashcards/flashcards";
 
 // Banco de Questões
-import BancoQuestoes from "./pages/BancoQuestoes";
+import BancoQuestoes from "./pages/questoes/BancoQuestoes";
 
 // Login
 import Login from "./pages/login";

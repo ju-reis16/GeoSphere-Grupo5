@@ -1,18 +1,84 @@
-import { useState } from "react";
-import questoes from "../data/questoes";
-import CardQuestao from "../components/CardQuestao";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import CardQuestao from "./CardQuestao";
 
-import "../styles/bancoQuestoes.css";
+import "./bancoQuestoes.css";
+
+const API_BASE = "http://localhost:3000";
+
+function agruparQuestoes(rows) {
+  const agrupadas = new Map();
+
+  rows.forEach((row) => {
+    const id = Number(row.id);
+
+    if (!agrupadas.has(id)) {
+      agrupadas.set(id, {
+        id,
+        titulo: `Questão ${id}`,
+        categoria: row.categoria || "Sem categoria",
+        vestibular: row.vestibular || "",
+        pergunta: row.pergunta || "",
+        alternativas: [],
+        correta: null,
+      });
+    }
+
+    const questao = agrupadas.get(id);
+    questao.alternativas.push(row.texto_alternativa || "");
+
+    if (row.correta) {
+      questao.correta = questao.alternativas.length - 1;
+    }
+  });
+
+  return Array.from(agrupadas.values());
+}
 
 function BancoQuestoes() {
 
+  const [questoes, setQuestoes] = useState([]);
   const [busca, setBusca] = useState("");
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState("");
 
-  const filtradas = questoes.filter((q) =>
-    q.titulo.toLowerCase().includes(
-      busca.toLowerCase()
-    )
-  );
+  useEffect(() => {
+    const carregarQuestoes = async () => {
+      try {
+        setCarregando(true);
+        setErro("");
+
+        const response = await fetch(
+          `${API_BASE}/questoes-vestibulares`
+        );
+
+        if (!response.ok) {
+          throw new Error(`Erro ao carregar questões: ${response.status}`);
+        }
+
+        const dados = await response.json();
+
+        setQuestoes(agruparQuestoes(Array.isArray(dados) ? dados : []));
+      } catch (error) {
+        setErro("Não foi possível carregar as questões do backend.");
+      } finally {
+        setCarregando(false);
+      }
+    };
+
+    carregarQuestoes();
+  }, []);
+
+  const filtradas = questoes.filter((q) => {
+    const termo = busca.toLowerCase();
+
+    return (
+      q.titulo.toLowerCase().includes(termo) ||
+      q.pergunta.toLowerCase().includes(termo) ||
+      q.categoria.toLowerCase().includes(termo) ||
+      q.vestibular.toLowerCase().includes(termo)
+    );
+  });
 
   return (
     <>
@@ -28,18 +94,15 @@ function BancoQuestoes() {
         </div>
 
         <nav className="nav-menu">
-          <a href="/">Início</a>
+          <Link to="/home">Início</Link>
 
-          <a
-            href="/"
-            className="active"
-          >
+          <Link to="/questoes" className="active">
             Questões
-          </a>
+          </Link>
 
-          <a href="/">
+          <Link to="/flashcards">
             Flashcards
-          </a>
+          </Link>
         </nav>
 
       </header>
@@ -53,7 +116,7 @@ function BancoQuestoes() {
         </h1>
 
         <p className="page-subtitle">
-          Pratique com 30 questões de vestibular disponíveis.
+          Pratique com {questoes.length} questões de vestibular disponíveis.
         </p>
 
         {/* FILTROS */}
@@ -100,14 +163,22 @@ function BancoQuestoes() {
 
         <div className="grid-cards">
 
-          {filtradas.map((questao) => (
+          {erro ? (
+            <p>{erro}</p>
+          ) : carregando ? (
+            <p>Carregando questões...</p>
+          ) : filtradas.length > 0 ? (
+            filtradas.map((questao) => (
 
-            <CardQuestao
-              key={questao.id}
-              questao={questao}
-            />
+              <CardQuestao
+                key={questao.id}
+                questao={questao}
+              />
 
-          ))}
+            ))
+          ) : (
+            <p>Nenhuma questão encontrada.</p>
+          )}
 
         </div>
 
@@ -121,21 +192,21 @@ function BancoQuestoes() {
 
           <div className="footer-links">
 
-            <a href="/">
+            <Link to="/home">
               INÍCIO
-            </a>
+            </Link>
 
-            <a href="/">
+            <Link to="/sobre-nos">
               SOBRE
-            </a>
+            </Link>
 
-            <a href="/">
+            <Link to="/autores">
               CONTATO
-            </a>
+            </Link>
 
-            <a href="/">
+            <Link to="/questoes">
               POLÍTICA DE PRIVACIDADE
-            </a>
+            </Link>
 
           </div>
 
