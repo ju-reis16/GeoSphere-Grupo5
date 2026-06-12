@@ -16,6 +16,9 @@ import Autores from "./pages/autores/autores";
 import SobreNos from "./pages/sobre-nós/sobre_nos";
 import Flashcards from "./pages/flashcards/flashcards";
 
+// Banco de Questões
+import BancoQuestoes from "./pages/BancoQuestoes";
+
 // Login
 import Login from "./pages/login";
 import PrivateRoute from "./routes/privateRoute";
@@ -68,7 +71,7 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route element={<AppLayout />}>
             <Route path="/home" element={<Home />} />
-            <Route path="/questoes" element={<Questoes />} />
+            <Route path="/questoes" element={<BancoQuestoes />} />
             <Route path="/questoes/:id" element={<QuestaoDetalhe />} />
             <Route path="/autores" element={<Autores />} />
             <Route path="/sobre-nos" element={<SobreNos />} />
