@@ -24,14 +24,17 @@ body{
 
 .page-title{
   color:#6f478f;
-  font-size:54px;
+  text-align: left;
+  font-size:53px;
   font-weight:800;
-  margin-bottom:4px;
+  margin-bottom:3px;
 }
 
 .page-subtitle{
   color:#6b6280;
-  font-size:13px;
+  text-align: left;
+   margin-top: 20px;
+  font-size:14px;
   margin-bottom:18px;
 }
 
