@@ -32,12 +32,14 @@ body {
   color: #5e2f7f;
   font-size: 40px;
   line-height: 35px;
+  margin-bottom: 0%;
 
 }
 
 .logo p {
   font-size: 13px;
   color: #796b83;
+  margin-bottom: 20px;
 }
 
 .navbar nav {

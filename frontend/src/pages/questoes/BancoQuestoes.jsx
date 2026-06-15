@@ -112,9 +112,6 @@ function BancoQuestoes() {
             Palavra
           </button>
 
-          <button className="pill pill-material">
-            Material auxiliar
-          </button>
         </div>
 
         <input
@@ -154,6 +151,8 @@ function BancoQuestoes() {
           </a>
 
          <a href="https://canva.link/9r30t9izr15v7f1">TUTORIAL DE USO</a>
+
+         <a href="https://canva.link/kqlek4d59qiux5d">MATERIAL AUXILIAR</a>
 
         </div>
 
