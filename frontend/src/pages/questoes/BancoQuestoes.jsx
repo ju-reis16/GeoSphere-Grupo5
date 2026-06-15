@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import CardQuestao from "./CardQuestao";
 
 import "./bancoQuestoes.css";
@@ -59,7 +58,7 @@ function BancoQuestoes() {
         const dados = await response.json();
 
         setQuestoes(agruparQuestoes(Array.isArray(dados) ? dados : []));
-      } catch (error) {
+      } catch {
         setErro("Não foi possível carregar as questões do backend.");
       } finally {
         setCarregando(false);
@@ -81,157 +80,76 @@ function BancoQuestoes() {
   });
 
   return (
-    <>
-      {/* HEADER */}
+    <div className="container banco-questoes-page">
+      <h1 className="page-title">Banco de Questões</h1>
 
-      <header className="header">
+      <p className="page-subtitle">
+        Pratique com {questoes.length} questões de vestibular disponíveis.
+      </p>
 
-        <div className="logo-area">
-          <h1>GeoSphere</h1>
-          <p>
-            Geografia para vestibulares
-          </p>
-        </div>
+      {/* FILTROS */}
 
-        <nav className="nav-menu">
-          <Link to="/home">Início</Link>
+      <div className="filtros">
 
-          <Link to="/questoes" className="active">
-            Questões
-          </Link>
+        <strong>Filtrar</strong>
 
-          <Link to="/flashcards">
-            Flashcards
-          </Link>
-        </nav>
+        <button className="pill pill-categoria">
+          Categoria
+        </button>
 
-      </header>
+        <button className="pill pill-tema">
+          Tema
+        </button>
 
-      {/* CONTEÚDO */}
+        <button className="pill pill-vest">
+          Vestibulares
+        </button>
 
-      <main className="container">
+        <button className="pill pill-palavra">
+          Palavra
+        </button>
 
-        <h1 className="page-title">
-          Banco de Questões
-        </h1>
+        <button className="pill pill-material">
+          Material auxiliar
+        </button>
 
-        <p className="page-subtitle">
-          Pratique com {questoes.length} questões de vestibular disponíveis.
-        </p>
+      </div>
 
-        {/* FILTROS */}
+      {/* BUSCA */}
 
-        <div className="filtros">
+      <input
+        className="input-busca"
+        type="text"
+        placeholder="Buscar por..."
+        value={busca}
+        onChange={(e) =>
+          setBusca(e.target.value)
+        }
+      />
 
-          <strong>Filtrar</strong>
+      {/* CARDS */}
 
-          <button className="pill pill-categoria">
-            Categoria
-          </button>
+      <div className="grid-cards">
 
-          <button className="pill pill-tema">
-            Tema
-          </button>
+        {erro ? (
+          <p>{erro}</p>
+        ) : carregando ? (
+          <p>Carregando questões...</p>
+        ) : filtradas.length > 0 ? (
+          filtradas.map((questao) => (
 
-          <button className="pill pill-vest">
-            Vestibulares
-          </button>
+            <CardQuestao
+              key={questao.id}
+              questao={questao}
+            />
 
-          <button className="pill pill-palavra">
-            Palavra
-          </button>
+          ))
+        ) : (
+          <p>Nenhuma questão encontrada.</p>
+        )}
 
-          <button className="pill pill-material">
-            Material auxiliar
-          </button>
-
-        </div>
-
-        {/* BUSCA */}
-
-        <input
-          className="input-busca"
-          type="text"
-          placeholder="Buscar por..."
-          value={busca}
-          onChange={(e) =>
-            setBusca(e.target.value)
-          }
-        />
-
-        {/* CARDS */}
-
-        <div className="grid-cards">
-
-          {erro ? (
-            <p>{erro}</p>
-          ) : carregando ? (
-            <p>Carregando questões...</p>
-          ) : filtradas.length > 0 ? (
-            filtradas.map((questao) => (
-
-              <CardQuestao
-                key={questao.id}
-                questao={questao}
-              />
-
-            ))
-          ) : (
-            <p>Nenhuma questão encontrada.</p>
-          )}
-
-        </div>
-
-      </main>
-
-      {/* FOOTER */}
-
-      <footer className="footer">
-
-        <div className="footer-content">
-
-          <div className="footer-links">
-
-            <Link to="/home">
-              INÍCIO
-            </Link>
-
-            <Link to="/sobre-nos">
-              SOBRE
-            </Link>
-
-            <Link to="/autores">
-              CONTATO
-            </Link>
-
-            <Link to="/questoes">
-              POLÍTICA DE PRIVACIDADE
-            </Link>
-
-          </div>
-
-          <div className="footer-friends">
-            let's be friends.
-          </div>
-
-          <div className="footer-email">
-
-            <h4>Email Address:</h4>
-
-            <p>
-              geosphere@gmail.com
-            </p>
-
-          </div>
-
-        </div>
-
-        <div className="footer-bottom">
-          © 2025 GEOSPHERE ALL RIGHTS RESERVED
-        </div>
-
-      </footer>
-    </>
+      </div>
+    </div>
   );
 }
 

@@ -72,7 +72,7 @@ function QuestaoDetalhe() {
         }
 
         setQuestao(questaoAgrupada);
-      } catch (error) {
+      } catch {
         setErro("Não foi possível carregar a questão.");
       } finally {
         setCarregando(false);

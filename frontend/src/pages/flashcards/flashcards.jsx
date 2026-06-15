@@ -13,9 +13,6 @@ function Flashcards() {
   const [erro, setErro] = useState("");
 
   useEffect(() => {
-    setCarregando(true);
-    setErro("");
-
     fetch(`${API_BASE}/view-flashcards`)
       .then((res) => {
         if (!res.ok) {
@@ -53,10 +50,6 @@ function Flashcards() {
 
     return true;
   });
-
-  const handleBuscar = () => {
-    setAberto(null);
-  };
 
   return (
     <div className="container">
