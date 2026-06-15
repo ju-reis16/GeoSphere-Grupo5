@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CardQuestao from "./CardQuestao";
-
 import "./bancoQuestoes.css";
 
 const API_BASE = "http://localhost:3000";
@@ -24,6 +24,7 @@ function agruparQuestoes(rows) {
     }
 
     const questao = agrupadas.get(id);
+
     questao.alternativas.push(row.texto_alternativa || "");
 
     if (row.correta) {
@@ -35,7 +36,6 @@ function agruparQuestoes(rows) {
 }
 
 function BancoQuestoes() {
-
   const [questoes, setQuestoes] = useState([]);
   const [busca, setBusca] = useState("");
   const [carregando, setCarregando] = useState(true);
@@ -52,12 +52,16 @@ function BancoQuestoes() {
         );
 
         if (!response.ok) {
-          throw new Error(`Erro ao carregar questões: ${response.status}`);
+          throw new Error(
+            `Erro ao carregar questões: ${response.status}`
+          );
         }
 
         const dados = await response.json();
 
-        setQuestoes(agruparQuestoes(Array.isArray(dados) ? dados : []));
+        setQuestoes(
+          agruparQuestoes(Array.isArray(dados) ? dados : [])
+        );
       } catch {
         setErro("Não foi possível carregar as questões do backend.");
       } finally {
@@ -80,72 +84,88 @@ function BancoQuestoes() {
   });
 
   return (
-    <div className="container banco-questoes-page">
-      <h1 className="page-title">Banco de Questões</h1>
+    <>
+      <div className="container banco-questoes-page">
+        <h1 className="page-title">Banco de Questões</h1>
 
-      <p className="page-subtitle">
-        Pratique com {questoes.length} questões de vestibular disponíveis.
-      </p>
+        <p className="page-subtitle">
+          Pratique com {questoes.length} questões de vestibular disponíveis.
+        </p>
 
-      {/* FILTROS */}
+        {/* FILTROS */}
+        <div className="filtros">
+          <strong>Filtrar</strong>
 
-      <div className="filtros">
+          <button className="pill pill-categoria">
+            Categoria
+          </button>
 
-        <strong>Filtrar</strong>
+          <button className="pill pill-tema">
+            Tema
+          </button>
 
-        <button className="pill pill-categoria">
-          Categoria
-        </button>
+          <button className="pill pill-vest">
+            Vestibulares
+          </button>
 
-        <button className="pill pill-tema">
-          Tema
-        </button>
+          <button className="pill pill-palavra">
+            Palavra
+          </button>
 
-        <button className="pill pill-vest">
-          Vestibulares
-        </button>
+          <button className="pill pill-material">
+            Material auxiliar
+          </button>
+        </div>
 
-        <button className="pill pill-palavra">
-          Palavra
-        </button>
+        <input
+          className="input-busca"
+          type="text"
+          placeholder="Buscar por..."
+          value={busca}
+          onChange={(e) => setBusca(e.target.value)}
+        />
 
-        <button className="pill pill-material">
-          Material auxiliar
-        </button>
-
+        <div className="grid-cards">
+          {erro ? (
+            <p>{erro}</p>
+          ) : carregando ? (
+            <p>Carregando questões...</p>
+          ) : filtradas.length > 0 ? (
+            filtradas.map((questao) => (
+              <CardQuestao
+                key={questao.id}
+                questao={questao}
+              />
+            ))
+          ) : (
+            <p>Nenhuma questão encontrada.</p>
+          )}
+        </div>
       </div>
 
-      <input
-        className="input-busca"
-        type="text"
-        placeholder="Buscar por..."
-        value={busca}
-        onChange={(e) =>
-          setBusca(e.target.value)
-        }
-      />
+      <footer>
+        <div className="links">
+          <Link to="/sobre-nos">SOBRE NÓS</Link>
 
-      <div className="grid-cards">
+          <Link to="/autores">AUTORES</Link>
 
-        {erro ? (
-          <p>{erro}</p>
-        ) : carregando ? (
-          <p>Carregando questões...</p>
-        ) : filtradas.length > 0 ? (
-          filtradas.map((questao) => (
+          <a href="https://mail.google.com/mail/u/3/#inbox?compose=new">
+            OUTRAS DÚVIDAS
+          </a>
 
-            <CardQuestao
-              key={questao.id}
-              questao={questao}
-            />
+         <a href="https://canva.link/9r30t9izr15v7f1">TUTORIAL DE USO</a>
 
-          ))
-        ) : (
-          <p>Nenhuma questão encontrada.</p>
-        )}
+        </div>
 
-      </div>
-    </div>
+        <div className="contato">
+          <h3>let's be friends.</h3>
+
+          <p>Email Address:</p>
+
+          <p>geosphere@gmail.com</p>
+        </div>
+      </footer>
+    </>
   );
 }
 

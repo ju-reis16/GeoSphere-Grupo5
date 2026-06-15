@@ -76,7 +76,7 @@ const buscarQuestaoPorId = async (idQuestao) => {
 FROM questoes q
 INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
 INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
-INNER JOIN alternativas a ON q.id_questao    = a.id_questao;
+INNER JOIN alternativas a ON q.id_questao    = a.id_questao
         WHERE q.id_questao = $1
     `, [idQuestao]);
     return result.rows;

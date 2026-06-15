@@ -9,6 +9,7 @@
 body {
   font-family: "Poppins", sans-serif;
   background: #d8c5e6;
+  margin: 0%  ;
 }
 
 .app-shell {
@@ -31,12 +32,12 @@ body {
   color: #5e2f7f;
   font-size: 40px;
   line-height: 35px;
+
 }
 
 .logo p {
   font-size: 13px;
   color: #796b83;
-  margin-top: 7px;
 }
 
 .navbar nav {

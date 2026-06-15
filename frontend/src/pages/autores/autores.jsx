@@ -41,7 +41,8 @@ function Autores() {
         <div className="links">
           <Link to="/sobre-nos">SOBRE NÓS</Link>
           <Link to="/autores">AUTORES</Link>
-          <p>OUTRAS DÚVIDAS</p>
+          <a href="https://mail.google.com/mail/u/3/#inbox?compose=new">OUTRAS DÚVIDAS</a>
+          <a href="https://canva.link/9r30t9izr15v7f1">TUTORIAL DE USO</a>
         </div>
 
         <div className="contato">
