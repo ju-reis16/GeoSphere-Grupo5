@@ -45,54 +45,56 @@ const buscarMaterialAuxiliar = async (categoria) => {
     return result.rows;
 };
 
+// ✅ CORRIGIDO: removido JOIN com temas (causava duplicatas), adicionado comentario
 const buscarQuestoesVestibulares = async () => {
     const result = await db.query(`
         SELECT 
-            q.id_questao as id,
-            c.nome as categoria,
-            v.nomev as vestibular,
+            q.id_questao AS id,
+            c.nome       AS categoria,
+            v.nomev      AS vestibular,
             q.pergunta,
+            q.comentario,
             a.texto_alternativa,
-            a.correta,
-            t.nomet
+            a.correta
         FROM questoes q
-        INNER JOIN categoria c ON q.id_categoria = c.id_categoria
-        INNER JOIN temas t ON t.id_categoria = c.id_categoria
+        INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
         INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
-        INNER JOIN alternativas a ON q.id_questao = a.id_questao
+        INNER JOIN alternativas a ON q.id_questao    = a.id_questao
     `);
     return result.rows;
 };
 
+// ✅ CORRIGIDO: removido JOIN com temas (causava duplicatas), adicionado comentario
 const buscarQuestaoPorId = async (idQuestao) => {
     const result = await db.query(`
         SELECT 
-            q.id_questao as id,
-            c.nome as categoria,
-            v.nomev as vestibular,
+            q.id_questao AS id,
+            c.nome       AS categoria,
+            v.nomev      AS vestibular,
             q.pergunta,
+            q.comentario,
             a.texto_alternativa,
-            a.correta,
-            t.nomet
+            a.correta
         FROM questoes q
-        INNER JOIN categoria c ON q.id_categoria = c.id_categoria
-        INNER JOIN temas t ON t.id_categoria = c.id_categoria
+        INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
         INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
-        INNER JOIN alternativas a ON q.id_questao = a.id_questao
+        INNER JOIN alternativas a ON q.id_questao    = a.id_questao
         WHERE q.id_questao = $1
     `, [idQuestao]);
     return result.rows;
 };
 
+// ✅ CORRIGIDO: flashcards liga via temas, não diretamente em categoria
 const buscarFlashcards = async () => {
     const result = await db.query(`
         SELECT 
+            f.id_flashcard,
             f.pergunta,
             f.resposta,
-            c.nome,
-            c.id_categoria
+            t.nomet,
+            t.id_tema
         FROM flashcards f
-        INNER JOIN categoria c ON f.id_categoria = c.id_categoria
+        INNER JOIN temas t ON f.id_tema = t.id_tema
     `);
     return result.rows;
 };

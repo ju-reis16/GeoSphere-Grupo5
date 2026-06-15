@@ -115,8 +115,6 @@ function BancoQuestoes() {
 
       </div>
 
-      {/* BUSCA */}
-
       <input
         className="input-busca"
         type="text"
@@ -126,8 +124,6 @@ function BancoQuestoes() {
           setBusca(e.target.value)
         }
       />
-
-      {/* CARDS */}
 
       <div className="grid-cards">
 
