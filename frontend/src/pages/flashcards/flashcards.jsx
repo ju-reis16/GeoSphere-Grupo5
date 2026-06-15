@@ -57,7 +57,7 @@ function Flashcards() {
   return (
     <div className="container">
       <section className="hero">
-        <h2>Flashcards de estudo</h2>
+        <h3><strong>Flashcards de estudo</strong></h3>
 
         <div className="busca">
           <select value={filtro} onChange={(e) => setFiltro(e.target.value)}>
