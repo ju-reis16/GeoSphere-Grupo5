@@ -27,6 +27,7 @@ function CardQuestao({ questao }) {
       </div>
 
     </div>
+    
   );
 }
 

@@ -1,6 +1,9 @@
-.container {
-  min-height: 100vh;
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px 20px 40px;
 }
+
 .hero {
   padding: 45px 30px;
 }

@@ -6,8 +6,11 @@
     text-align: center;
   }
 
+  .card {
+    background: #79568f;
+  }
   .card p {
-    text-align:left;
+    text-align:center;
   }
 
   
@@ -68,4 +71,6 @@
 .links a {
   color: inherit;
   text-decoration: none;
+  text-align: left;
+
 }
