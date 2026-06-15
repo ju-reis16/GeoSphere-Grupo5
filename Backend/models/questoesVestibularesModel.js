@@ -47,38 +47,36 @@ const buscarMaterialAuxiliar = async (categoria) => {
 
 const buscarQuestoesVestibulares = async () => {
     const result = await db.query(`
-        SELECT 
-            q.id_questao as id,
-            c.nome as categoria,
-            v.nomev as vestibular,
-            q.pergunta,
-            a.texto_alternativa,
-            a.correta,
-            t.nomet
-        FROM questoes q
-        INNER JOIN categoria c ON q.id_categoria = c.id_categoria
-        INNER JOIN temas t ON t.id_categoria = c.id_categoria
-        INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
-        INNER JOIN alternativas a ON q.id_questao = a.id_questao
+      SELECT
+    q.id_questao AS id,
+    c.nome        AS categoria,
+    v.nomev       AS vestibular,
+    q.pergunta,
+    q.comentario,
+    a.texto_alternativa,
+    a.correta
+FROM questoes q
+INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
+INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
+INNER JOIN alternativas a ON q.id_questao    = a.id_questao;
     `);
     return result.rows;
 };
 
 const buscarQuestaoPorId = async (idQuestao) => {
     const result = await db.query(`
-        SELECT 
-            q.id_questao as id,
-            c.nome as categoria,
-            v.nomev as vestibular,
-            q.pergunta,
-            a.texto_alternativa,
-            a.correta,
-            t.nomet
-        FROM questoes q
-        INNER JOIN categoria c ON q.id_categoria = c.id_categoria
-        INNER JOIN temas t ON t.id_categoria = c.id_categoria
-        INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
-        INNER JOIN alternativas a ON q.id_questao = a.id_questao
+       SELECT
+    q.id_questao AS id,
+    c.nome        AS categoria,
+    v.nomev       AS vestibular,
+    q.pergunta,
+    q.comentario,
+    a.texto_alternativa,
+    a.correta
+FROM questoes q
+INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
+INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
+INNER JOIN alternativas a ON q.id_questao    = a.id_questao;
         WHERE q.id_questao = $1
     `, [idQuestao]);
     return result.rows;
