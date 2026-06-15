@@ -86,14 +86,14 @@ const buscarQuestaoPorId = async (idQuestao) => {
 
 const buscarFlashcards = async () => {
     const result = await db.query(`
-        SELECT 
+        select 
             f.pergunta,
             f.resposta,
             c.nome,
             c.id_categoria
-        FROM flashcards f
-        INNER JOIN categoria c 
-        ON f.id_categoria = c.id_categoria
+        from flashcards f
+            inner join categoria c
+            on f.id_categoria = c.id_categoria
     `);
     return result.rows;
 };
