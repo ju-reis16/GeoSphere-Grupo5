@@ -38,6 +38,7 @@ function agruparQuestoes(rows) {
 function BancoQuestoes() {
   const [questoes, setQuestoes] = useState([]);
   const [busca, setBusca] = useState("");
+  const [filtro, setFiltro] = useState("todos");
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
 
@@ -60,10 +61,14 @@ function BancoQuestoes() {
         const dados = await response.json();
 
         setQuestoes(
-          agruparQuestoes(Array.isArray(dados) ? dados : [])
+          agruparQuestoes(
+            Array.isArray(dados) ? dados : []
+          )
         );
-      } catch {
-        setErro("Não foi possível carregar as questões do backend.");
+      } catch (error) {
+        setErro(
+          "Não foi possível carregar as questões do backend."
+        );
       } finally {
         setCarregando(false);
       }
@@ -74,6 +79,18 @@ function BancoQuestoes() {
 
   const filtradas = questoes.filter((q) => {
     const termo = busca.toLowerCase();
+
+    if (filtro === "categoria") {
+      return q.categoria.toLowerCase().includes(termo);
+    }
+
+    if (filtro === "vestibular") {
+      return q.vestibular.toLowerCase().includes(termo);
+    }
+
+    if (filtro === "pergunta") {
+      return q.pergunta.toLowerCase().includes(termo);
+    }
 
     return (
       q.titulo.toLowerCase().includes(termo) ||
@@ -92,35 +109,36 @@ function BancoQuestoes() {
           Pratique com {questoes.length} questões de vestibular disponíveis.
         </p>
 
-        {/* FILTROS */}
-        <div className="filtros">
-          <strong>Filtrar</strong>
+        <div className="barra-pesquisa">
+          <select
+            className="select-filtro"
+            value={filtro}
+            onChange={(e) => setFiltro(e.target.value)}
+          >
+            <option value="todos">
+              Selecione o filtro
+            </option>
+            <option value="categoria">
+              Categoria
+            </option>
+            <option value="vestibular">
+              Vestibular
+            </option>
+            <option value="pergunta">
+              Pergunta
+            </option>
+          </select>
 
-          <button className="pill pill-categoria">
-            Categoria
-          </button>
-
-          <button className="pill pill-tema">
-            Tema
-          </button>
-
-          <button className="pill pill-vest">
-            Vestibulares
-          </button>
-
-          <button className="pill pill-palavra">
-            Palavra
-          </button>
-
+          <input
+            className="input-busca"
+            type="text"
+            placeholder="Digite o que deseja buscar..."
+            value={busca}
+            onChange={(e) =>
+              setBusca(e.target.value)
+            }
+          />
         </div>
-
-        <input
-          className="input-busca"
-          type="text"
-          placeholder="Buscar por..."
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-        />
 
         <div className="grid-cards">
           {erro ? (
@@ -142,18 +160,25 @@ function BancoQuestoes() {
 
       <footer>
         <div className="links">
-          <Link to="/sobre-nos">SOBRE NÓS</Link>
+          <Link to="/sobre-nos">
+            SOBRE NÓS
+          </Link>
 
-          <Link to="/autores">AUTORES</Link>
+          <Link to="/autores">
+            AUTORES
+          </Link>
 
           <a href="https://mail.google.com/mail/u/3/#inbox?compose=new">
             OUTRAS DÚVIDAS
           </a>
 
-         <a href="https://canva.link/9r30t9izr15v7f1">TUTORIAL DE USO</a>
+          <a href="https://canva.link/9r30t9izr15v7f1">
+            TUTORIAL DE USO
+          </a>
 
-         <a href="https://canva.link/kqlek4d59qiux5d">MATERIAL AUXILIAR</a>
-
+          <a href="https://canva.link/kqlek4d59qiux5d">
+            MATERIAL AUXILIAR
+          </a>
         </div>
 
         <div className="contato">

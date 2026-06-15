@@ -1,14 +1,12 @@
 function Gabarito({
-  alternativaCorreta,
-  explicacao
+  alternativaCorreta, // "A", "B" "C"...
+  explicacao          // Texto explicando o porquê da resposta
 }) {
 
   return (
     <div className="gabarito">
 
-      <h3>
-        Gabarito explicado
-      </h3>
+      <h3>Gabarito explicado</h3>
 
       <p>
         <strong>
@@ -16,9 +14,7 @@ function Gabarito({
         </strong>
       </p>
 
-      <p>
-        {explicacao}
-      </p>
+      <p>{explicacao}</p>
 
     </div>
   );

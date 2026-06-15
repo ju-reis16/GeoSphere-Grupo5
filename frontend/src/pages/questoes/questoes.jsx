@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Alternativa from "./alternativaQ";
 import Gabarito from "./Gabarito";
@@ -14,7 +14,9 @@ function agruparQuestao(rows) {
   }
 
   const primeira = rows[0];
-  const alternativas = rows.map((row) => row.texto_alternativa || "");
+  const alternativas = rows.map(
+    (row) => row.texto_alternativa || ""
+  );
   const correta = rows.findIndex((row) => row.correta);
 
   return {
@@ -26,7 +28,8 @@ function agruparQuestao(rows) {
     alternativas,
     correta: correta >= 0 ? correta : 0,
     explicacao:
-      primeira.comentario || "Explicação não disponível no backend ainda.",
+      primeira.comentario ||
+      "Explicação não disponível no backend ainda.",
   };
 }
 
@@ -46,13 +49,18 @@ function QuestaoDetalhe() {
         setCarregando(true);
         setErro("");
 
-        const response = await fetch(`${API_BASE}/questoes/${id}`);
+        const response = await fetch(
+          `${API_BASE}/questoes/${id}`
+        );
 
         if (!response.ok) {
-          throw new Error(`Erro ao carregar questão: ${response.status}`);
+          throw new Error(
+            `Erro ao carregar questão: ${response.status}`
+          );
         }
 
         const dados = await response.json();
+
         const questaoAgrupada = agruparQuestao(
           Array.isArray(dados) ? dados : []
         );
@@ -100,7 +108,10 @@ function QuestaoDetalhe() {
             <div className="texto-questao">
               <p className="referencia">
                 {questao.vestibular}
-                {questao.vestibular && questao.categoria ? " · " : ""}
+                {questao.vestibular &&
+                questao.categoria
+                  ? " · "
+                  : ""}
                 {questao.categoria}
               </p>
 
@@ -108,39 +119,51 @@ function QuestaoDetalhe() {
             </div>
 
             <div className="alternativas">
-              {questao.alternativas.map((alt, index) => (
-                <Alternativa
-                  key={index}
-                  letra={letras[index]}
-                  texto={alt}
-                  index={index}
-                  correta={questao.correta}
-                  selecionada={selecionada}
-                  respondeu={respondeu}
-                  onSelect={setSelecionada}
-                />
-              ))}
+              {questao.alternativas.map(
+                (alt, index) => (
+                  <Alternativa
+                    key={index}
+                    letra={
+                      letras[index] ||
+                      String.fromCharCode(
+                        97 + index
+                      )
+                    }
+                    texto={alt}
+                    index={index}
+                    correta={questao.correta}
+                    selecionada={selecionada}
+                    respondeu={respondeu}
+                    onSelect={setSelecionada}
+                  />
+                )
+              )}
             </div>
 
             <button
               className="btn-responder"
               onClick={responder}
-              disabled={respondeu || selecionada === null}
+              disabled={
+                respondeu ||
+                selecionada === null
+              }
             >
               Responder
             </button>
 
             {respondeu && (
               <Gabarito
-                alternativaCorreta={letras[questao.correta] || "?"}
+                alternativaCorreta={
+                  letras[questao.correta] || "?"
+                }
                 explicacao={questao.explicacao}
               />
             )}
           </>
-        ) : null}
+        ) : (
+          <p>Questão não encontrada.</p>
+        )}
       </div>
-
-      
     </div>
   );
 }
