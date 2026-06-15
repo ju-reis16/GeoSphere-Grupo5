@@ -86,23 +86,14 @@ const buscarQuestaoPorId = async (idQuestao) => {
 
 const buscarFlashcards = async () => {
     const result = await db.query(`
-<<<<<<< HEAD
         SELECT 
-=======
-        select 
->>>>>>> 05f3ca855644e649abf8a13171300011b135ddc1
             f.pergunta,
             f.resposta,
             c.nome,
             c.id_categoria
-<<<<<<< HEAD
         FROM flashcards f
-        INNER JOIN categoria c ON f.id_categoria = c.id_categoria
-=======
-        from flashcards f
-            inner join categoria c
-            on f.id_categoria = c.id_categoria
->>>>>>> 05f3ca855644e649abf8a13171300011b135ddc1
+        INNER JOIN categoria c 
+        ON f.id_categoria = c.id_categoria
     `);
     return result.rows;
 };
