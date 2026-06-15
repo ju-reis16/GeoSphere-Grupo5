@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./flashcards.css";
 
+// URL base da API backend
 const API_BASE = "http://localhost:3000";
 
 function Flashcards() {
-  const [flashcards, setFlashcards] = useState([]);
-  const [aberto, setAberto] = useState(null);
-  const [filtro, setFiltro] = useState("");
-  const [busca, setBusca] = useState("");
+  const [flashcards, setFlashcards] = useState([]);  // Lista completa 
+  const [aberto, setAberto] = useState(null);         // Índice do card virado
+  const [filtro, setFiltro] = useState("");            // ("categoria" ou "palavra")
+  const [busca, setBusca] = useState("");              // Termo digitado na busca
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
 
+  // Busca os flashcards da API 
   useEffect(() => {
     fetch(`${API_BASE}/view-flashcards`)
       .then((res) => {
@@ -31,17 +33,18 @@ function Flashcards() {
       });
   }, []);
 
-  // Filtrar flashcards baseado no tipo de filtro e termo de busca
+  // Filtra os flashcards de acordo com o filtro
   const flashcardsFiltrados = flashcards.filter((card) => {
-    // Se não tem filtro ou busca, mostra todos
+    // exibe todos
     if (!filtro || !busca) return true;
 
-    // Filtrar por categoria
+    // Filtra pelo nome da categoria
     if (filtro === "categoria") {
       return card.nome.toLowerCase().includes(busca.toLowerCase());
     }
-    // Filtrar por palavra-chave na pergunta ou resposta
-    else if (filtro === "palavra") {
+
+    // Filtra por palavra-chave 
+    if (filtro === "palavra") {
       return (
         card.pergunta.toLowerCase().includes(busca.toLowerCase()) ||
         card.resposta.toLowerCase().includes(busca.toLowerCase())
@@ -69,8 +72,6 @@ function Flashcards() {
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
           />
-
-        
         </div>
 
         <p>
@@ -84,42 +85,31 @@ function Flashcards() {
         <div className="tutorial-grid">
           <div className="passo">
             <div className="numero">1</div>
-
             <div>
               <h4>Leia a Pergunta</h4>
-
-              <p>
-                Tente responder mentalmente antes de virar o card.
-              </p>
+              <p>Tente responder mentalmente antes de virar o card.</p>
             </div>
           </div>
 
           <div className="passo">
             <div className="numero">2</div>
-
             <div>
               <h4>Vire o Card</h4>
-
-              <p>
-                Clique para ver a resposta completa e verificar.
-              </p>
+              <p>Clique para ver a resposta completa e verificar.</p>
             </div>
           </div>
 
           <div className="passo">
             <div className="numero">3</div>
-
             <div>
               <h4>Pratique</h4>
-
-              <p>
-                Revise os cards regularmente para fixar o conteúdo.
-              </p>
+              <p>Revise os cards regularmente para fixar o conteúdo.</p>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Grade de flashcards */}
       <div className="cards-grid">
         {erro ? (
           <p>{erro}</p>
@@ -127,22 +117,24 @@ function Flashcards() {
           <p>Carregando flashcards...</p>
         ) : flashcardsFiltrados.length > 0 ? (
           flashcardsFiltrados.map((card, index) => (
+            // Adiciona "flipped" 
+
             <div
               className={`flashcard-container ${aberto === index ? "flipped" : ""}`}
               key={index}
               onClick={() => setAberto(aberto === index ? null : index)}
             >
               <div className="flashcard-inner">
+
+                {/* categoria + pergunta */}
                 <div className="flashcard-front">
+                  {/* nome da categoria */}
                   <span
                     className={`tag ${
-                      card.nome === "globalização"
-                        ? "globalizacao"
-                        : card.nome === "geopolítica"
-                        ? "geopolitica"
-                        : card.nome === "imigração"
-                        ? "imigracao"
-                        : "blocos"
+                      card.nome === "globalização"  ? "globalizacao"
+                      : card.nome === "geopolítica" ? "geopolitica"
+                      : card.nome === "imigração"   ? "imigracao"
+                      : "blocos"
                     }`}
                   >
                     {card.nome}
@@ -151,9 +143,11 @@ function Flashcards() {
                   <p className="hint">Clique para revelar a resposta</p>
                 </div>
 
+                {/* resposta */}
                 <div className="flashcard-back">
                   <p>{card.resposta}</p>
                 </div>
+
               </div>
             </div>
           ))
@@ -171,9 +165,7 @@ function Flashcards() {
 
         <div className="contato">
           <h3>let's be friends.</h3>
-
           <p>Email Address:</p>
-
           <p>geosphere@gmail.com</p>
         </div>
       </footer>

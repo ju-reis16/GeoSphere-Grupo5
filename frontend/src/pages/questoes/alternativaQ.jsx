@@ -1,21 +1,25 @@
+// Componente da alternativa 
 function Alternativa({
-  letra,
-  texto,
-  index,
-  selecionada,
-  correta,
-  respondeu,
-  onSelect
+  letra,      // Letra da alternativa
+  texto,      // Texto da alternativa
+  index,      // Índice numérico da alternativa
+  selecionada,// Índice da alternativa que o usuário selecionou
+  correta,    // Índice da alternativa correta
+  respondeu,  // Se o usuário já respondeu a questão
+  onSelect    // Função ao selecionar uma alternativa
 }) {
 
+  //classe card
   let classe = "alternativa-card";
 
   if (respondeu) {
 
+    // Destaca a alternativa correta em verde
     if (index === correta) {
       classe += " correta";
     }
 
+    // Destaca a alternativa errada em vermelho
     if (
       index === selecionada &&
       index !== correta
@@ -27,11 +31,13 @@ function Alternativa({
   return (
     <div
       className={classe}
+      // Só permite selecionar se ainda não respondeu
       onClick={() =>
         !respondeu && onSelect(index)
       }
     >
 
+      {/* Se a alternativa for a correta */}
       {respondeu &&
         index === correta && (
           <span className="status-label status-correta">
@@ -39,6 +45,7 @@ function Alternativa({
           </span>
       )}
 
+      {/*Se a selecionada está errada */}
       {respondeu &&
         index === selecionada &&
         index !== correta && (
@@ -49,6 +56,7 @@ function Alternativa({
 
       <label>
 
+        {/* Radio quando esta alternativa está selecionada */}
         <input
           type="radio"
           checked={selecionada === index}
@@ -56,7 +64,7 @@ function Alternativa({
         />
 
         <span>
-          <strong>{letra})</strong> {texto}
+          <strong>{letra}</strong> {texto}
         </span>
 
       </label>

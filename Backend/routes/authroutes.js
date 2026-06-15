@@ -3,10 +3,12 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
+// Rota de login: valida o token
 router.post("/login", (req, res) => {
   try {
     const { email, password } = req.body;
 
+    //remove espaços e padroniza o email em minúsculas
     const normalizedEmail =
       typeof email === "string"
         ? email.trim().toLowerCase()
@@ -17,6 +19,7 @@ router.post("/login", (req, res) => {
         ? password.trim()
         : "";
 
+    // Normaliza as credenciais válidas 
     const validEmail =
       (process.env.AUTH_USER || "")
         .trim()
@@ -26,6 +29,7 @@ router.post("/login", (req, res) => {
       (process.env.AUTH_PASSWORD || "")
         .trim();
 
+    // Rejeita o login se email ou senha estiverem erradas
     if (
       normalizedEmail !== validEmail ||
       normalizedPassword !== validPassword
@@ -35,11 +39,13 @@ router.post("/login", (req, res) => {
       });
     }
 
+    // Dados do usuário para incluir no token 
     const usuario = {
       nome: "Professor",
       email: process.env.AUTH_USER,
     };
 
+    // Gera o token JWT e validade de 24 horas
     const token = jwt.sign(
       {
         email: usuario.email,
@@ -51,6 +57,7 @@ router.post("/login", (req, res) => {
       }
     );
 
+    // Retorna o token e os dados do usuário
     return res.json({
       token,
       usuario,
