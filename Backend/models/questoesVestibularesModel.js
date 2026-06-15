@@ -45,7 +45,6 @@ const buscarMaterialAuxiliar = async (categoria) => {
     return result.rows;
 };
 
-// ✅ CORRIGIDO: removido JOIN com temas (causava duplicatas), adicionado comentario
 const buscarQuestoesVestibulares = async () => {
     const result = await db.query(`
         SELECT 
@@ -64,7 +63,6 @@ const buscarQuestoesVestibulares = async () => {
     return result.rows;
 };
 
-// ✅ CORRIGIDO: removido JOIN com temas (causava duplicatas), adicionado comentario
 const buscarQuestaoPorId = async (idQuestao) => {
     const result = await db.query(`
         SELECT 
@@ -84,7 +82,6 @@ const buscarQuestaoPorId = async (idQuestao) => {
     return result.rows;
 };
 
-// ✅ CORRIGIDO: flashcards liga via temas, não diretamente em categoria
 const buscarFlashcards = async () => {
     const result = await db.query(`
         SELECT 
