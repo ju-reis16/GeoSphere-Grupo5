@@ -23,7 +23,7 @@ body{
 }
 
 .page-title{
-  color:#6f478f;
+  color:#55356e;
   text-align:left;
   font-size:53px;
   font-weight:800;
@@ -63,7 +63,7 @@ body{
   border:none;
   border-radius:14px;
   padding:0 28px;
-  background:#aa92bd;
+  background:#a890bb;
   color:white;
   font-size:18px;
   outline:none;
@@ -76,7 +76,7 @@ body{
   border:none;
   border-radius:14px;
   padding:0 28px;
-  background:#735b8d;
+  background:#4f325c;
   color:white;
   font-size:18px;
   outline:none;
@@ -139,7 +139,8 @@ body{
 
 .card h3{
   font-size:22px;
-  color:#222;
+  color:#452952;
+  text-align:left;
   margin-bottom:10px;
 }
 
@@ -154,6 +155,7 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  border-top: 1px solid #f0edf5;
 }
 
 .footer-card span{
@@ -163,7 +165,7 @@ body{
 
 .footer-card a{
   text-decoration:none;
-  color:#6c63ff;
+  color:#9f7ac7;
   font-weight:600;
 }
 
