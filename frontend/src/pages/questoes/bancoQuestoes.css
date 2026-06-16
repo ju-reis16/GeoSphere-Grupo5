@@ -44,44 +44,47 @@ body{
 
 .barra-pesquisa{
   display:flex;
+  align-items:center;
   gap:18px;
   width:100%;
-  margin-bottom:30px;
+  margin-bottom:25px;
+}
+
+.barra-pesquisa h3{
+  color:#1f2430;
+  font-size:24px;
+  font-weight:700;
+  white-space:nowrap;
 }
 
 .select-filtro{
-  width:220px;
-  height:50px;
+  width:345px;
+  height:80px;
   border:none;
-  border-radius:8px;
-  background:#a893b9;
-  color:white;
-  font-size:15px;
+  border-radius:14px;
   padding:0 28px;
-  cursor:pointer;
+  background:#aa92bd;
+  color:white;
+  font-size:18px;
   outline:none;
-}
-
-.select-filtro option{
-  color:#333;
+  cursor:pointer;
 }
 
 .input-busca{
   flex:1;
-  height:50px;
+  height:80px;
   border:none;
-  border-radius:8px;
+  border-radius:14px;
+  padding:0 28px;
   background:#735b8d;
   color:white;
-  font-size:15px;
-  padding:0 30px;
+  font-size:18px;
   outline:none;
 }
 
 .input-busca::placeholder{
-  color:rgba(255,255,255,.85);
+  color:rgba(255,255,255,.9);
 }
-
 /* ===========================
    CARDS
 =========================== */

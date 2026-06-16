@@ -100,26 +100,23 @@ function BancoQuestoes() {
       </p>
 
       {/* botões de filtragem por categoria, tema, vestibular etc. */}
-      <div className="filtros">
+      <div className="barra-pesquisa">
 
-        <strong>Filtrar</strong>
+  <select className="select-filtro">
+    <option>Selecione o filtro</option>
+    <option>Categoria</option>
+    <option>Tema</option>
+    <option>Vestibulares</option>
+    <option>Palavra</option>
+    <option>Material auxiliar</option>
+  </select>
 
-        <button className="pill pill-categoria">Categoria</button>
-        <button className="pill pill-tema">Tema</button>
-        <button className="pill pill-vest">Vestibulares</button>
-        <button className="pill pill-palavra">Palavra</button>
-        <button className="pill pill-material">Material auxiliar</button>
-
-      </div>
-
-      {/* Campo de busca livre por texto */}
-      <input
-        className="input-busca"
-        type="text"
-        placeholder="Buscar por..."
-        value={busca}
-        onChange={(e) => setBusca(e.target.value)}
-      />
+  <input
+    className="input-busca"
+    type="text"
+    placeholder="Digite o que deseja buscar..."
+  />
+</div>
 
       {/* Grade de cards: exibe erro, loading, questões ou mensagem de lista vazia */}
       <div className="grid-cards">
