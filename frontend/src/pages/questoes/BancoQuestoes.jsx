@@ -108,7 +108,6 @@ function BancoQuestoes() {
     <option>Tema</option>
     <option>Vestibulares</option>
     <option>Palavra</option>
-    <option>Material auxiliar</option>
   </select>
 
   <input
