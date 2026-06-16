@@ -6,15 +6,20 @@
     text-align: center;
   }
 
+  .card {
+    background: #55356e;;
+  }
+
   .container h2 {
-    color: rgb(66, 19, 110);
-    margin-top: 30px;
-    font-size: 35px;
+    margin-top: 35px;
+    font-size: 30px;
+    color: #55356e;
   }
 
   .container p {
     margin-top: 10px;
     margin-bottom: 30px;
+    color: #9c97a0;
   }
 
   .card {
