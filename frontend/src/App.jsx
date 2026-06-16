@@ -1,12 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  NavLink,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink, Navigate, Outlet } from "react-router-dom";
 
 // Home
 import Home from "./pages/home/home";
