@@ -5,6 +5,7 @@ const listar = async () => {
     return result.rows;
 };
 
+// Função para buscar questões por vestibular, categoria, palavra-chave na pergunta e temas
 const buscarPorVestibular = async (vestibular) => {
     const result = await db.query(`
         SELECT * FROM questoes_vestibulares
@@ -45,6 +46,8 @@ const buscarMaterialAuxiliar = async (categoria) => {
     return result.rows;
 };
 
+//' Função para buscar questões agrupadas por ID, com alternativas e resposta correta
+
 const buscarQuestoesVestibulares = async () => {
     const result = await db.query(`
       SELECT
@@ -63,7 +66,7 @@ INNER JOIN alternativas a ON q.id_questao    = a.id_questao;
     return result.rows;
 };
 
-const buscarQuestaoPorId = async (idQuestao) => {
+const buscarQuestaoPorId = async (idQuestao) => { 
     const result = await db.query(`
        SELECT
     q.id_questao AS id,
@@ -81,6 +84,8 @@ INNER JOIN alternativas a ON q.id_questao    = a.id_questao
     `, [idQuestao]);
     return result.rows;
 };
+
+// Função para buscar flashcards agrupados por categoria
 
 const buscarFlashcards = async () => {
     const result = await db.query(`

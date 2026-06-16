@@ -159,6 +159,7 @@ function Flashcards() {
     </div>
 
     <footer>
+    
         <div className="links">
           <Link to="/sobre-nos">SOBRE NÓS</Link>
           <Link to="/autores">AUTORES</Link>
