@@ -12,7 +12,7 @@ import Flashcards from "./pages/flashcards/flashcards";
 import BancoQuestoes from "./pages/questoes/BancoQuestoes";
 
 // Login
-import Login from "./pages/login";
+import Login from "./routes/login";
 import PrivateRoute from "./routes/privateRoute";
 
 function AppLayout() {
