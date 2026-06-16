@@ -80,6 +80,7 @@ function BancoQuestoes() {
   });
 
   return (
+    <>
     <div className="container banco-questoes-page">
       <h1 className="page-title">Banco de Questões</h1>
 
@@ -94,7 +95,6 @@ function BancoQuestoes() {
           <option>Tema</option>
           <option>Vestibulares</option>
           <option>Palavra</option>
-          <option>Material auxiliar</option>
         </select>
 
         <input
@@ -121,6 +121,7 @@ function BancoQuestoes() {
       </div>
 
       {/* FOOTER */}
+    </div>
       <footer>
         <div className="links">
           <Link to="/sobre-nos">SOBRE NÓS</Link>
@@ -142,7 +143,7 @@ function BancoQuestoes() {
           <p>geosphere@gmail.com</p>
         </div>
       </footer>
-    </div>
+      </>
   );
 }
 

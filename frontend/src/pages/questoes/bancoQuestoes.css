@@ -47,7 +47,7 @@ body{
   align-items:center;
   gap:18px;
   width:100%;
-  margin-bottom:25px;
+  margin-bottom:40px;
 }
 
 .barra-pesquisa h3{
@@ -58,10 +58,10 @@ body{
 }
 
 .select-filtro{
-  width:345px;
-  height:80px;
+  width:220px;
+  height:50px;
   border:none;
-  border-radius:14px;
+  border-radius:8px;
   padding:0 28px;
   background:#aa92bd;
   color:white;
@@ -72,7 +72,7 @@ body{
 
 .input-busca{
   flex:1;
-  height:80px;
+  height:50px;
   border:none;
   border-radius:8px;
   padding:0 28px;
@@ -100,12 +100,22 @@ body{
   border-radius:10px;
   padding:16px;
   min-height:180px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  box-shadow:0 2px 8px rgba(0, 0, 0, 0.293);
   transition:.3s;
 }
 
 .card:hover{
   transform:translateY(-3px);
+}
+
+.categoria {
+  display:inline-block;
+  border-radius:50px;
+  padding:4px 10px;
+  font-size:11px;
+  font-weight:600;
+  margin-bottom:10px;
+  background-color: #5b226e;
 }
 
 .categoria{
@@ -163,7 +173,7 @@ body{
 
 .footer-card a{
   text-decoration:none;
-  color:#6c63ff;
+  color:#9463ff;
   font-weight:600;
 }
 

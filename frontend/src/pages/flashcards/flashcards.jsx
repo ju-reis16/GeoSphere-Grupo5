@@ -55,6 +55,7 @@ function Flashcards() {
   });
 
   return (
+    <>
     <div className="container">
       <section className="hero">
         <h3><strong>Flashcards de estudo</strong></h3>
@@ -155,8 +156,9 @@ function Flashcards() {
           <p>Nenhum flashcard encontrado.</p>
         )}
       </div>
+    </div>
 
-      <footer>
+    <footer>
         <div className="links">
           <Link to="/sobre-nos">SOBRE NÓS</Link>
           <Link to="/autores">AUTORES</Link>
@@ -172,7 +174,7 @@ function Flashcards() {
           <p>geosphere@gmail.com</p>
         </div>
       </footer>
-    </div>
+      </>
   );
 }
 

@@ -6,8 +6,20 @@
     text-align: center;
   }
 
+  .container h2 {
+    color: rgb(66, 19, 110);
+    margin-top: 30px;
+    font-size: 35px;
+  }
+
+  .container p {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
   .card {
     text-align: left;
+    margin-bottom: 20px;
   }
 
   .card p {

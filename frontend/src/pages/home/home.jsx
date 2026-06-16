@@ -3,14 +3,17 @@ import "./home.css";
 
 function Home() {
   return (
+    <>
     <div className="container">
-      <section className="hero">
-        <h2><strong>Domine a Geografia para o vestibular</strong></h2>
+      <h2><strong>Domine a Geografia para o vestibular</strong></h2>
 
         <p>
           Estude Geopolítica e Geografia Física com questões comentadas e
           conteúdo completo
         </p>
+        
+      <section className="hero">
+        
 
         <div className="cards">
           <div className="card">
@@ -55,8 +58,9 @@ function Home() {
           </p>
         </div>
       </section>
+    </div>
 
-      <footer>
+    <footer>
         <div className="links">
           <Link to="/sobre-nos">SOBRE NÓS</Link>
           <Link to="/autores">AUTORES</Link>
@@ -75,7 +79,7 @@ function Home() {
           <p>geosphere@gmail.com</p>
         </div>
       </footer>
-    </div>
+      </>
   );
 }
 

@@ -5,9 +5,10 @@ import "./autores.css";
 
 function Autores() {
   return (
+    <>
     <div className="container">
       <section className="hero">
-        <h2>Autores</h2>
+        <h2><strong>Autores</strong></h2>
         <p>Conheça os geógrafos que inspiram a nossa visão sobre território, globalização e urbanismo.</p>
 
         <div className="autor-grid">
@@ -36,8 +37,9 @@ function Autores() {
           </div>
         </div>
       </section>
+    </div>
 
-      <footer>
+    <footer>
         <div className="links">
           <Link to="/sobre-nos">SOBRE NÓS</Link>
           <Link to="/autores">AUTORES</Link>
@@ -53,7 +55,8 @@ function Autores() {
           <p>geosphere@gmail.com</p>
         </div>
       </footer>
-    </div>
+
+      </>
   );
 }
 
