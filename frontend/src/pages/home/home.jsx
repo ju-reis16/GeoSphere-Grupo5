@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="container">
       <section className="hero">
-        <h2>Domine a Geografia para o vestibular</h2>
+        <h2><strong>Domine a Geografia para o vestibular</strong></h2>
 
         <p>
           Estude Geopolítica e Geografia Física com questões comentadas e

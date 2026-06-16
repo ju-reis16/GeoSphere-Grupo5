@@ -1,5 +1,5 @@
 .hero h2 {
-    text-align: center;
+    text-align: left;
   }
 
   .hero p {
@@ -7,10 +7,20 @@
   }
 
   .card {
-    background: #79568f;
+    text-align: left;
   }
+
   .card p {
-    text-align:center;
+    text-align:left;
+    margin-left: 20px;
+  }
+
+  .card button {
+    margin-left: 20px;
+  }
+
+  .card h3 {
+    margin-left: 20px;
   }
 
   
