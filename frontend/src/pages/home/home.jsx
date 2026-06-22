@@ -1,9 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./home.css";
 
 function Home() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
+
   return (
     <div className="home-wrapper">
+
+      <div className="logout-area">
+        <button className="btn-sair" onClick={handleLogout}>
+          Sair
+        </button>
+      </div>
+
       <div className="container">
         <h2><strong>Domine a Geografia para o vestibular</strong></h2>
         <p>Estude Geopolítica e Geografia Física com questões comentadas e conteúdo completo</p>
@@ -45,6 +59,7 @@ function Home() {
           <a href="https://canva.link/9r30t9izr15v7f1">TUTORIAL DE USO</a>
           <a href="https://canva.link/kqlek4d59qiux5d">MATERIAL AUXILIAR</a>
         </div>
+
         <div className="contato">
           <h3>let's be friends.</h3>
           <p>Email Address:</p>

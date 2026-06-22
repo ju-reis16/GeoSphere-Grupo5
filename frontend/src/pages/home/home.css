@@ -173,3 +173,31 @@ main {
   text-decoration: none;
   text-align: left;
 }
+.logout-area {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.btn-sair {
+  background-color: #583e5d;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-sair:hover {
+  background-color: #34143f;
+}
+
+.logout-area {
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  z-index: 1000;
+}
+

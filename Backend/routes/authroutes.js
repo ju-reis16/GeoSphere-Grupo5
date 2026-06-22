@@ -38,29 +38,23 @@ router.post("/login", (req, res) => {
         message: "Email ou senha inválidos",
       });
     }
-
-    // Dados do usuário para incluir no token 
-    const usuario = {
-      nome: "Professor",
-      email: process.env.AUTH_USER,
-    };
-
-    // Gera o token JWT e validade de 24 horas
+      
     const token = jwt.sign(
       {
-        email: usuario.email,
+        email: normalizedEmail,
         role: "admin",
       },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "24h",
-      }
+      process.env.JWT_SECRET || "default_secret_key",
+      { expiresIn: "1h" }
     );
 
     // Retorna o token e os dados do usuário
     return res.json({
       token,
-      usuario,
+      usuario: {
+        email: normalizedEmail,
+        role: "admin",
+      },
     });
   } catch (error) {
     return res.status(500).json({
