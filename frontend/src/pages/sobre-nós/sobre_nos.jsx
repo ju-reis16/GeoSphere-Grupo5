@@ -3,17 +3,19 @@ import "./sobre_nos.css";
 
 function SobreNos() {
   return (
-    <div className="container">
-      <section className="hero">
-        <h2>GeoSphere: Geografia para Vestibulares</h2>
+    <>
+    <section className="hero">
+        <h2><strong>GeoSphere: Geografia para Vestibulares</strong></h2>
         <p>
+          <strong>
           O GeoSphere é um site criado pelo nosso grupo para ajudar estudantes a
           se prepararem para vestibulares por meio de questões comentadas e
           flashcards de Geografia.
+          </strong>
         </p>
       </section>
-
-      <section className="sobre-conteudo">
+    <div className="container">
+            <section className="sobre-conteudo">
         <div className="sobre-section">
           <h3>O projeto</h3>
           <p>
@@ -78,12 +80,16 @@ function SobreNos() {
           </p>
         </div>
       </section>
-
-      <footer>
+  
+    </div>
+    <footer>
         <div className="links">
           <Link to="/sobre-nos">SOBRE NÓS</Link>
           <Link to="/autores">AUTORES</Link>
-          <p>OUTRAS DÚVIDAS</p>
+          <a href="https://mail.google.com/mail/u/3/#inbox?compose=new">OUTRAS DÚVIDAS</a>
+          <a href="https://canva.link/9r30t9izr15v7f1">TUTORIAL DE USO</a>
+          <a href="https://canva.link/kqlek4d59qiux5d">MATERIAL AUXILIAR</a>
+
         </div>
 
         <div className="contato">
@@ -92,7 +98,7 @@ function SobreNos() {
           <p>geosphere@gmail.com</p>
         </div>
       </footer>
-    </div>
+      </>
   );
 }
 

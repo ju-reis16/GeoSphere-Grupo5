@@ -1,16 +1,120 @@
 .hero h2 {
-    text-align: center;
-  }
+  text-align: left;
+}
 
-  .hero p {
-    text-align: center;
-  }
+.hero p {
+  text-align: center;
+}
 
-  .card p {
-    text-align:left;
-  }
+.hero {
+  margin: 0;
+  padding: 0;
+}
 
-  
+.card {
+  background: #55356e;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.container h2 {
+  margin-top: 35px;
+  font-size: 30px;
+  color: #55356e;
+}
+
+.container p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #9c97a0;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.card p {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.card button {
+  margin-left: 75px;
+}
+
+.card h3 {
+  margin-left: 75px;
+}
+
+.mapa {
+  position: relative;
+  background-image: url('../../assets/fundo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mapa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(185, 160, 203, 0.7);
+  z-index: 0;
+}
+
+.mapa-conteudo {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.mapa .texto {
+  color: white;
+  margin-bottom: 40px;
+}
+
+.mapa .texto:last-child {
+  margin-bottom: 0;
+}
+
+.mapa .texto h2 {
+  color: white;
+  margin-bottom: 16px;
+  font-size: 28px;
+}
+
+.mapa .texto p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.container,
+.hero,
+.cards {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body,
+main {
+  margin: 0;
+  padding: 0;
+}
+
 /* Tablets */
 @media (max-width: 1024px) {
   .cards {
@@ -28,7 +132,6 @@
 
 /* Celulares */
 @media (max-width: 768px) {
-
   .hero {
     padding: 30px 20px;
     text-align: center;
@@ -68,4 +171,33 @@
 .links a {
   color: inherit;
   text-decoration: none;
+  text-align: left;
 }
+.logout-area {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.btn-sair {
+  background-color: #583e5d;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-sair:hover {
+  background-color: #34143f;
+}
+
+.logout-area {
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  z-index: 1000;
+}
+

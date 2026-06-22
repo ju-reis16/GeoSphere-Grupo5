@@ -1,9 +1,15 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .hero {
   padding: 45px 30px;
 }
 
 .hero h2 {
-  font-size: 30px;
+  font-size: 50px;
   color: #684186;
   margin-bottom: 8px;
 }
@@ -33,7 +39,7 @@
 
 .autor-image {
   width: 100%;
-  height: 500px;
+  height: 300px;
   object-fit: cover;
   border-radius: 18px;
   margin-bottom: 18px;
@@ -41,7 +47,7 @@
 
 .autor-card h3 {
   font-size: 24px;
-  text-align: center;
+  margin-left: 55px;  
   color: #3a1f5e;
   margin-bottom: 10px;
 }
@@ -58,14 +64,22 @@
   margin-bottom: 14px;
 }
 
+/* FOOTER */
+
 footer {
   background: #79628d;
   color: rgb(240, 235, 246);
-  padding: 40px 30px;
+
+  width: 100%;
+  margin: 0;
+  padding: 40px 50px;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: start;
+
+  box-sizing: border-box;
 }
 
 .links {
@@ -74,12 +88,15 @@ footer {
   gap: 8px;
 }
 
-.links p,
 .links a {
   font-size: 12px;
-  margin-bottom: 2px;
   color: inherit;
   text-decoration: none;
+  text-align: left;
+}
+
+.links a:hover {
+  text-decoration: underline;
 }
 
 .contato {
@@ -94,6 +111,7 @@ footer {
 
 .contato p {
   font-size: 12px;
+  margin: 4px 0;
 }
 
 @media (max-width: 768px) {
@@ -104,5 +122,15 @@ footer {
   footer {
     grid-template-columns: 1fr;
     gap: 20px;
+    text-align: center;
+  }
+
+  .contato {
+    text-align: center;
+    justify-self: center;
+  }
+
+  .links {
+    align-items: center;
   }
 }

@@ -3,10 +3,12 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
+// Rota de login: valida o token
 router.post("/login", (req, res) => {
   try {
     const { email, password } = req.body;
 
+    //remove espaços e padroniza o email em minúsculas
     const normalizedEmail =
       typeof email === "string"
         ? email.trim().toLowerCase()
@@ -17,6 +19,7 @@ router.post("/login", (req, res) => {
         ? password.trim()
         : "";
 
+    // Normaliza as credenciais válidas 
     const validEmail =
       (process.env.AUTH_USER || "")
         .trim()
@@ -26,6 +29,7 @@ router.post("/login", (req, res) => {
       (process.env.AUTH_PASSWORD || "")
         .trim();
 
+    // Rejeita o login se email ou senha estiverem erradas
     if (
       normalizedEmail !== validEmail ||
       normalizedPassword !== validPassword
@@ -34,26 +38,23 @@ router.post("/login", (req, res) => {
         message: "Email ou senha inválidos",
       });
     }
-
-    const usuario = {
-      nome: "Professor",
-      email: process.env.AUTH_USER,
-    };
-
+      
     const token = jwt.sign(
       {
-        email: usuario.email,
+        email: normalizedEmail,
         role: "admin",
       },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "24h",
-      }
+      process.env.JWT_SECRET || "default_secret_key",
+      { expiresIn: "1h" }
     );
 
+    // Retorna o token e os dados do usuário
     return res.json({
       token,
-      usuario,
+      usuario: {
+        email: normalizedEmail,
+        role: "admin",
+      },
     });
   } catch (error) {
     return res.status(500).json({

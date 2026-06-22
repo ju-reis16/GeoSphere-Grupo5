@@ -1,6 +1,6 @@
-const { Pool } = require('pg');
+const { Pool } = require('pg'); // Importa classe pool do módulo pg
 
-const pool = new Pool({
+const pool = new Pool({  
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CardQuestao from "./CardQuestao";
 
 import "./bancoQuestoes.css";
 
+// URL da API do backend
 const API_BASE = "http://localhost:3000";
 
+// Transforma as questões agrupadas por ID
 function agruparQuestoes(rows) {
   const agrupadas = new Map();
 
@@ -35,7 +38,6 @@ function agruparQuestoes(rows) {
 }
 
 function BancoQuestoes() {
-
   const [questoes, setQuestoes] = useState([]);
   const [busca, setBusca] = useState("");
   const [carregando, setCarregando] = useState(true);
@@ -47,9 +49,7 @@ function BancoQuestoes() {
         setCarregando(true);
         setErro("");
 
-        const response = await fetch(
-          `${API_BASE}/questoes-vestibulares`
-        );
+        const response = await fetch(`${API_BASE}/questoes-vestibulares`);
 
         if (!response.ok) {
           throw new Error(`Erro ao carregar questões: ${response.status}`);
@@ -80,6 +80,7 @@ function BancoQuestoes() {
   });
 
   return (
+    <>
     <div className="container banco-questoes-page">
       <h1 className="page-title">Banco de Questões</h1>
 
@@ -87,65 +88,62 @@ function BancoQuestoes() {
         Pratique com {questoes.length} questões de vestibular disponíveis.
       </p>
 
-      {/* FILTROS */}
+      <div className="barra-pesquisa">
+        <select className="select-filtro">
+          <option>Selecione o filtro</option>
+          <option>Categoria</option>
+          <option>Tema</option>
+          <option>Vestibulares</option>
+          <option>Palavra</option>
+        </select>
 
-      <div className="filtros">
-
-        <strong>Filtrar</strong>
-
-        <button className="pill pill-categoria">
-          Categoria
-        </button>
-
-        <button className="pill pill-tema">
-          Tema
-        </button>
-
-        <button className="pill pill-vest">
-          Vestibulares
-        </button>
-
-        <button className="pill pill-palavra">
-          Palavra
-        </button>
-
-        <button className="pill pill-material">
-          Material auxiliar
-        </button>
-
+        <input
+          className="input-busca"
+          type="text"
+          placeholder="Digite o que deseja buscar..."
+          value={busca}
+          onChange={(e) => setBusca(e.target.value)}
+        />
       </div>
 
-      <input
-        className="input-busca"
-        type="text"
-        placeholder="Buscar por..."
-        value={busca}
-        onChange={(e) =>
-          setBusca(e.target.value)
-        }
-      />
-
       <div className="grid-cards">
-
         {erro ? (
           <p>{erro}</p>
         ) : carregando ? (
           <p>Carregando questões...</p>
         ) : filtradas.length > 0 ? (
           filtradas.map((questao) => (
-
-            <CardQuestao
-              key={questao.id}
-              questao={questao}
-            />
-
+            <CardQuestao key={questao.id} questao={questao} />
           ))
         ) : (
           <p>Nenhuma questão encontrada.</p>
         )}
-
       </div>
+
+      {/* FOOTER */}
     </div>
+      <footer>
+        <div className="links">
+          <Link to="/sobre-nos">SOBRE NÓS</Link>
+          <Link to="/autores">AUTORES</Link>
+          <a href="https://mail.google.com/mail/u/3/#inbox?compose=new">
+            OUTRAS DÚVIDAS
+          </a>
+          <a href="https://canva.link/9r30t9izr15v7f1">
+            TUTORIAL DE USO
+          </a>
+          <a href="https://canva.link/kqlek4d59qiux5d">
+            MATERIAL AUXILIAR
+          </a>
+        </div>
+
+        <div className="contato">
+          <h3>let's be friends.</h3>
+          <p>Email Address:</p>
+          <p>geosphere@gmail.com</p>
+        </div>
+      </footer>
+      </>
   );
 }
 

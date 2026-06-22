@@ -157,3 +157,15 @@ body{
   }
 
 }
+footer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+
+.links a {
+  color: inherit;
+  text-decoration: none;
+  text-align: left;
+
+}

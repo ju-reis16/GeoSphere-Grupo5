@@ -9,7 +9,7 @@ const listar = async (req, res) => {
     }
 };
 
-const buscarPorVestibular = async (req, res) => {
+const buscarPorVestibular = async (req, res) => { 
     try {
         const questoes = await model.buscarPorVestibular(req.params.vestibular);
         res.json(questoes);

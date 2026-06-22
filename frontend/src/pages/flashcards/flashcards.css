@@ -3,14 +3,16 @@
 }
 
 .hero {
-  padding: 45px 30px;
+  padding: 15px 30px;
 }
 
-.hero h2 {
-  font-size: 30px;
-  color: #684186;
+.hero h3 {
+  font-size: 50px;
+  color: #55356e;
   margin-bottom: 8px;
   text-align: left;
+  margin-top: 20px;
+  margin-bottom: 35px;
 }
 
 .hero > p {
@@ -18,6 +20,7 @@
   font-size: 13px;
   margin-bottom: 25px;
   text-align: left;
+  display: flex;
 }
 
 .hero input {
@@ -175,7 +178,7 @@ footer {
   padding: 0 25px;
   border: none;
   border-radius: 8px;
-  background: #65477f;
+  background: #5e4a6f;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -289,7 +292,7 @@ footer {
 .numero {
   width: 40px;
   height: 40px;
-  background: #b7c4eb;
+  background: #cdb7eb;
   border-radius: 8px;
   display: flex;
   align-items: center;

@@ -5,6 +5,7 @@ const listar = async () => {
     return result.rows;
 };
 
+// Função para buscar questões por vestibular, categoria, palavra-chave na pergunta e temas
 const buscarPorVestibular = async (vestibular) => {
     const result = await db.query(`
         SELECT * FROM questoes_vestibulares
@@ -45,56 +46,57 @@ const buscarMaterialAuxiliar = async (categoria) => {
     return result.rows;
 };
 
-// ✅ CORRIGIDO: removido JOIN com temas (causava duplicatas), adicionado comentario
+//' Função para buscar questões agrupadas por ID, com alternativas e resposta correta
+
 const buscarQuestoesVestibulares = async () => {
     const result = await db.query(`
-        SELECT 
-            q.id_questao AS id,
-            c.nome       AS categoria,
-            v.nomev      AS vestibular,
-            q.pergunta,
-            q.comentario,
-            a.texto_alternativa,
-            a.correta
-        FROM questoes q
-        INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
-        INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
-        INNER JOIN alternativas a ON q.id_questao    = a.id_questao
+      SELECT
+    q.id_questao AS id,
+    c.nome        AS categoria,
+    v.nomev       AS vestibular,
+    q.pergunta,
+    q.comentario,
+    a.texto_alternativa,
+    a.correta
+FROM questoes q
+INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
+INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
+INNER JOIN alternativas a ON q.id_questao    = a.id_questao;
     `);
     return result.rows;
 };
 
-// ✅ CORRIGIDO: removido JOIN com temas (causava duplicatas), adicionado comentario
-const buscarQuestaoPorId = async (idQuestao) => {
+const buscarQuestaoPorId = async (idQuestao) => { 
     const result = await db.query(`
-        SELECT 
-            q.id_questao AS id,
-            c.nome       AS categoria,
-            v.nomev      AS vestibular,
-            q.pergunta,
-            q.comentario,
-            a.texto_alternativa,
-            a.correta
-        FROM questoes q
-        INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
-        INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
-        INNER JOIN alternativas a ON q.id_questao    = a.id_questao
+       SELECT
+    q.id_questao AS id,
+    c.nome        AS categoria,
+    v.nomev       AS vestibular,
+    q.pergunta,
+    q.comentario,
+    a.texto_alternativa,
+    a.correta
+FROM questoes q
+INNER JOIN categoria    c ON q.id_categoria  = c.id_categoria
+INNER JOIN vestibulares v ON q.id_vestibular = v.id_vestibular
+INNER JOIN alternativas a ON q.id_questao    = a.id_questao
         WHERE q.id_questao = $1
     `, [idQuestao]);
     return result.rows;
 };
 
-// ✅ CORRIGIDO: flashcards liga via temas, não diretamente em categoria
+// Função para buscar flashcards agrupados por categoria
+
 const buscarFlashcards = async () => {
     const result = await db.query(`
-        SELECT 
-            f.id_flashcard,
+        select 
             f.pergunta,
             f.resposta,
-            t.nomet,
-            t.id_tema
-        FROM flashcards f
-        INNER JOIN temas t ON f.id_tema = t.id_tema
+            c.nome,
+            c.id_categoria
+        from flashcards f
+            inner join categoria c
+            on f.id_categoria = c.id_categoria
     `);
     return result.rows;
 };

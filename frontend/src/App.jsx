@@ -1,12 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  NavLink,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink, Navigate, Outlet } from "react-router-dom";
 
 // Home
 import Home from "./pages/home/home";
@@ -19,7 +12,7 @@ import Flashcards from "./pages/flashcards/flashcards";
 import BancoQuestoes from "./pages/questoes/BancoQuestoes";
 
 // Login
-import Login from "./pages/login";
+import Login from "./routes/login";
 import PrivateRoute from "./routes/privateRoute";
 
 function AppLayout() {
